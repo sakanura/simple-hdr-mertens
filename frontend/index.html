@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple HDR with Exposure Fusion</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+    <style>
+        /* Preview image styling */
+        .preview-img {
+            width: 180px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-right: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        /* Loading screen */
+        #loading {
+            display: none;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid #ddd;
+            border-top-color: #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+
+    <script src="script.js" defer></script>
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <h2 class="text-center mb-4">Simple HDR with Exposure Fusion</h2>
+
+    <div class="card p-4 shadow">
+
+        <label class="form-label">Upload 3 Images (Under, Normal, Over Exposure)</label>
+        <input type="file" id="images" multiple class="form-control" onchange="previewImages()">
+
+        <!-- PREVIEW SECTION -->
+        <div id="preview" class="d-flex mt-3"></div>
+
+        <button onclick="uploadImages()" class="btn btn-primary mt-3 w-100">
+            Process HDR
+        </button>
+
+        <!-- LOADING ANIMATION -->
+        <div id="loading">
+            <div class="spinner"></div>
+            <p class="mt-2 fw-bold">Processing HDR...</p>
+        </div>
+
+    </div>
+
+
+    <!-- RESULTS -->
+    <div id="result-section" class="mt-5 d-none">
+
+        <h4>HDR Result</h4>
+        <img id="hdr-img" class="img-fluid rounded shadow mb-3">
+
+        <a id="download-link" class="btn btn-success mb-4" download>Download HDR</a>
+
+        <h4>Before vs After</h4>
+        <img id="compare-img" class="img-fluid rounded shadow mb-3">
+
+        <h4>Histogram Before–After</h4>
+        <img id="hist-img" class="img-fluid rounded shadow">
+
+    </div>
+
+</div>
+
+</body>
+</html>
